@@ -1,0 +1,22 @@
+{
+  "name": "week3-workshop.",
+  "version": "1.0.0",
+  "description": "Workshop task for week3",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratho3009/week3-workshop..git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ratho3009/week3-workshop./issues"
+  },
+  "homepage": "https://github.com/ratho3009/week3-workshop.#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
