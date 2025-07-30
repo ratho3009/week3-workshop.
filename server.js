@@ -1,42 +1,36 @@
-const express = require('express');
-const app = express();
-const http = require('http').Server(app);
-const path = require('path');
-
-// For POST-data
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(express.static(__dirname + '/www'));
+const express = require('express'); // Imports Express framework
+const app = express(); // Create instance of Express application
+const http = require('http').Server(app); // Create HTTP server using Express
 
 
-// user data
-const users = [
+app.use(express.urlencoded({ extended: true })); // Enable parsing of encoded url data
+app.use(express.json()); // enables parsing of JSON data in incoming requests
+
+app.use(express.static(__dirname + '/www')); // Serve files from www
+
+require('./routes/homeroute.js').route(app); // Import routes
+
+
+const users = [ // hardcoded list of users with email and password for login
   { email: 'frameworks@griffith.com', password: '123' },
   { email: 'rasmus@griffith.com', password: '456' },
   { email: 'software@c.com', password: '789' }
 ];
 
-// home/login route
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/www/index.html'));
-  });
-  
-  // account route
-  app.get('/account', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/www/account.html'));
-  });
-  
-  // post rout
-  app.post('/login', (req, res) => {
+app.post('/login', (req, res) => { // Handle POST requests to login
     const { email, password } = req.body;
-    const valid = users.some(user => user.email === email && user.password === password);
-    res.json({ valid });
+  
+    const match = users.find(user => user.email === email && user.password === password);
+  
+    if (match) {
+      res.json({ valid: true }); // Login successful
+    } else {
+      res.json({ valid: false }); // Login failed
+    }
   });
   
-  // Start server at port 3000 and logs it
-  const server = http.listen(3000, function () {
-    const host = server.address().address;
-    const port = server.address().port;
-    console.log("Server running at http://" + host + ":" + port);
-  });
+const server = http.listen(3000, function () { // Starts server on port 3000 and logs address and port
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log("Server running at http://" + host + ":" + port);
+});
