@@ -17,16 +17,26 @@ const users = [
   { email: 'software@c.com', password: '789' }
 ];
 
-
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  const valid = users.some(user => user.email === email && user.password === password);
-  res.json({ valid });
-});
-
-// starts server at port 3000 and logs it
-const server = http.listen(3000, function () {
-  const host = server.address().address;
-  const port = server.address().port;
-  console.log("Server running at http://" + host + ":" + port);
-});
+// home/login route
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/www/index.html'));
+  });
+  
+  // account route
+  app.get('/account', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/www/account.html'));
+  });
+  
+  // post rout
+  app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    const valid = users.some(user => user.email === email && user.password === password);
+    res.json({ valid });
+  });
+  
+  // Start server at port 3000 and logs it
+  const server = http.listen(3000, function () {
+    const host = server.address().address;
+    const port = server.address().port;
+    console.log("Server running at http://" + host + ":" + port);
+  });
