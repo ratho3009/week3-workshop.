@@ -7,7 +7,7 @@ $(document).ready(function () {
   
       $.post('/login', { email, password }, function (response) {
         if (response.valid) {
-          // go to account page
+          // go to account
           window.location.href = '/account';
         } else {
           // show error message
