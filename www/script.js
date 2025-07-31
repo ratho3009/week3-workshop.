@@ -14,3 +14,43 @@ $(document).ready(function () { // Run this function when fully loaded
       });
     });
   });
+
+
+
+
+  
+
+  /*
+  $(document).ready(function () {
+  $('#loginForm').on('submit', function (e) {
+    e.preventDefault(); // Forhindrer standard form-submission
+
+    const email = $('#email').val();
+    const password = $('#password').val();
+
+    $.ajax({
+      type: 'POST',
+      url: '/login',
+      contentType: 'application/json',
+      data: JSON.stringify({ email, password }),
+      dataType: 'json',
+      success: function (response) {
+        if (response.valid) {
+          // Gå til account-siden ved suksess
+          window.location.href = '/account';
+        } else {
+          // Vis feilmelding ved ugyldig login
+          $('#errormsg')
+            .removeClass('d-none')
+            .addClass('d-block')
+            .css('background-color', '#f8d7da');
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error('Login request failed:', status, error);
+        alert('Something went wrong with the login request.');
+      }
+    });
+  });
+});
+  */

@@ -6,7 +6,7 @@ const http = require('http').Server(app); // Create HTTP server using Express
 app.use(express.urlencoded({ extended: true })); // Enable parsing of encoded url data
 app.use(express.json()); // enables parsing of JSON data in incoming requests
 
-app.use(express.static(__dirname + '/www')); // Serve files from www
+app.use(express.static(__dirname + '/www')); // Serve files from www, instead of app.get
 
 require('./routes/homeroute.js').route(app); // Import routes
 
@@ -30,7 +30,6 @@ app.post('/login', (req, res) => { // Handle POST requests to login
   });
   
 const server = http.listen(3000, function () { // Starts server on port 3000 and logs address and port
-  const host = server.address().address;
   const port = server.address().port;
-  console.log("Server running at http://" + host + ":" + port);
+  console.log("Server running at http://localhost:" + port);
 });
